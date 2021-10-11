@@ -26,6 +26,7 @@ function SignUp() {
       });
       if (data.success) {
         // alert("Success")
+        localStorage.setItem("userToken",`${data.token}`)
         console.log(window.location);
         return (window.location.href = "http://localhost:3000/login");
       } else {

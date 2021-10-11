@@ -22,7 +22,13 @@ function Login_SignUP() {
     if (userName.trim() == "" || password.trim() == "") {
         return alert("Enter input fields");
       }
-      const {data}=await  axios.get(`${BACKEND}/user/login/${userName}/${password}`)
+      const getToken= localStorage.getItem("userToken")
+      
+      const {data}=await  axios.get(`${BACKEND}/user/login/${userName}/${password}`,{
+        headers: {
+          authorization:getToken
+        }
+      })
       console.log(data,"<<<<<this is data")
       if(data.success) {
           alert("login success")
